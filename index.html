@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="zoom">
+    <img src="img4.webp" alt="">
+    <div class="overlay-text">
+      <h2>Together let's drive</h2>
+      <h3>Chevrolet Corvette</h3>
+    </div>
+  </div>
+
+  <div class="trigger-area"></div> 
+  <div class="main-text">
+    <img src="img2.webp" alt="" class="top-bottom">
+    <h2 class="h2top">Porsche</h2>
+    <h3>911 GT3 RS</h3>
+    <h2>525 PS</h2>
+    <h3>Power (PS)</h3>
+    <h2>3.2s</h2>
+    <h3>0-100 km/h</h3>
+    <h2>296 km/h</h2>
+    <h3>Top Speed</h3>
+  </div>
+
+  <div class="zoom2">
+    <img src="img3.webp" alt="" class="img2">
+    <div class="overlay-text lambo">
+      <h2 >"Being the Leader <br> of the Unexpected"</h2>
+      <h3 > Lamborghini</h3>
+    </div>
+  </div>
+
+
+  <div class="main-text corvette ">
+    <h2 class="h2top">Chevrolet</h2>
+    <h3>Corvette Stingray</h3>
+
+    <h2>495 hp</h2>
+    <h3>Power (HP)</h3>
+    <h2>3.0s</h2>
+    <h3>0-100 km/h</h3>
+    <h2>312 km/h</h2>
+    <h3>Top Speed</h3>
+    
+
+  
+    <p class="description">The Chevrolet Corvette has a storied history dating back to its debut in 1953. 
+      Originally designed as a show car for the 1953 Motorama display at the New York Auto Show, it generated
+       enough interest to induce GM to make a production version. Over the decades, the Corvette has evolved 
+       through eight design generations, becoming an iconic American sports car known for its performance, d
+       esign, and innovation.</p>
+  
+      </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+  <script>
+
+
+    $(document).ready(function(){
+      $(window).scroll(function(){
+        var scroll = $(window).scrollTop();
+        $(".zoom img").css({
+          width: (100 + scroll / 10) + "%"
+        });
+      });
+      $(window).scroll(function(){
+        var scroll = $(window).scrollTop();
+        console.log("Scroll position:", scroll);
+        if (scroll >= 1000) {
+          var newWidth = (300 - scroll / 10);
+          if (newWidth < 110) newWidth = 110; 
+          $(".zoom2 img").css({
+        width: newWidth + "%"
+          });
+        }
+      });
+  
+      let observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          console.log("Elemento en pantalla:", entry.isIntersecting); 
+          if (entry.isIntersecting) {
+            document.querySelector(".top-bottom").classList.add("active");
+          } else {
+            document.querySelector(".top-bottom").classList.remove("active");
+          }
+        });
+      }, { threshold: 0.1 });
+  
+      observer.observe(document.querySelector(".main-text"));
+    });
+  </script>
+  
+  
+
+</body>
+</html>
